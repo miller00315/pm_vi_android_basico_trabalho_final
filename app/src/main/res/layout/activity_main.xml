@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="16dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/player_one_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/player_one"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/player_one_current_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/initial_score"
+        app:layout_constraintBottom_toBottomOf="@+id/player_one_title"
+        app:layout_constraintStart_toEndOf="@+id/player_one_title"
+        app:layout_constraintTop_toTopOf="@+id/player_one_title" />
+
+    <Button
+        android:id="@+id/button_add_one_player_one"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:minWidth="0dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:text="@string/add_one"
+        app:layout_constraintEnd_toStartOf="@+id/button_add_three_player_one"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="@+id/player_one_title"
+        app:layout_constraintTop_toBottomOf="@+id/player_one_title" />
+
+    <Button
+        android:id="@+id/button_add_three_player_one"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:minWidth="0dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:text="@string/add_three"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/button_add_one_player_one"
+        app:layout_constraintEnd_toStartOf="@+id/button_add_six_player_one"
+        app:layout_constraintTop_toBottomOf="@+id/player_one_title" />
+
+    <Button
+        android:id="@+id/button_add_six_player_one"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:minWidth="0dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:text="@string/add_six"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/button_add_three_player_one"
+        app:layout_constraintEnd_toStartOf="@+id/button_add_nine_player_one"
+        app:layout_constraintTop_toBottomOf="@+id/player_one_title" />
+
+    <Button
+        android:id="@+id/button_add_nine_player_one"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:minWidth="0dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:text="@string/add_nine"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/button_add_six_player_one"
+        app:layout_constraintEnd_toStartOf="@+id/button_add_twelve_player_one"
+        app:layout_constraintTop_toBottomOf="@+id/player_one_title" />
+
+    <Button
+        android:id="@+id/button_add_twelve_player_one"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:minWidth="0dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:text="@string/add_twelve"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/button_add_nine_player_one"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_one_title" />
+
+    <TextView
+        android:id="@+id/player_two_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/player_two"
+        app:layout_constraintStart_toStartOf="@+id/player_one_title"
+        app:layout_constraintTop_toBottomOf="@+id/button_add_one_player_one" />
+
+    <TextView
+        android:id="@+id/player_two_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/initial_score"
+        app:layout_constraintBottom_toBottomOf="@+id/player_two_title"
+        app:layout_constraintStart_toEndOf="@+id/player_two_title"
+        app:layout_constraintTop_toTopOf="@+id/player_two_title" />
+
+    <Button
+        android:id="@+id/button_add_one_player_two"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:minWidth="0dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:text="@string/add_one"
+        app:layout_constraintEnd_toStartOf="@+id/button_add_three_player_two"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="@+id/player_two_title"
+        app:layout_constraintTop_toBottomOf="@+id/player_two_title" />
+
+    <Button
+        android:id="@+id/button_add_three_player_two"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:minWidth="0dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:text="@string/add_three"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/button_add_one_player_two"
+        app:layout_constraintEnd_toStartOf="@+id/button_add_six_player_two"
+        app:layout_constraintTop_toBottomOf="@+id/player_two_title" />
+
+    <Button
+        android:id="@+id/button_add_six_player_two"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:minWidth="0dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:text="@string/add_six"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/button_add_three_player_two"
+        app:layout_constraintEnd_toStartOf="@+id/button_add_nine_player_two"
+        app:layout_constraintTop_toBottomOf="@+id/player_two_title" />
+
+    <Button
+        android:id="@+id/button_add_nine_player_two"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:minWidth="0dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:text="@string/add_nine"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/button_add_six_player_two"
+        app:layout_constraintEnd_toStartOf="@+id/button_add_twelve_player_two"
+        app:layout_constraintTop_toBottomOf="@+id/player_two_title" />
+
+    <Button
+        android:id="@+id/button_add_twelve_player_two"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:minWidth="0dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:text="@string/add_twelve"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/button_add_nine_player_two"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_two_title" />
+
+    <Button
+        android:id="@+id/button_play_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/play_history"
+        app:layout_constraintBottom_toTopOf="@+id/button_restart_history"
+        app:layout_constraintStart_toStartOf="@+id/button_add_one_player_two"
+        app:layout_constraintTop_toBottomOf="@+id/button_add_one_player_two" />
+
+    <Button
+        android:id="@+id/button_restart_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/restart_history"
+        app:layout_constraintBottom_toTopOf="@+id/button_provide_names"
+        app:layout_constraintStart_toStartOf="@+id/button_play_history"
+        app:layout_constraintTop_toBottomOf="@+id/button_play_history" />
+
+    <Button
+        android:id="@+id/button_provide_names"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/provide_names"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/button_restart_history"
+        app:layout_constraintTop_toBottomOf="@+id/button_restart_history" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

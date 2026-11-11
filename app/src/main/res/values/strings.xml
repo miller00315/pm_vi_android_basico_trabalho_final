@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Marca Truco</string>
+    <string name="add_one">+1</string>
+    <string name="add_three">+3</string>
+    <string name="add_six">+6</string>
+    <string name="add_nine">+9</string>
+    <string name="add_twelve">+12</string>
+    <string name="play_history">Hist. de Jogadas</string>
+    <string name="restart_history">Zerar Histórico</string>
+    <string name="provide_names">Inf. Nomes</string>
+    <string name="player_one">Jogador 1</string>
+    <string name="player_two">Jogador 2</string>
+    <string name="initial_score">XX</string>
+    <string name="player_name_hint">Nome do jogador</string>
+    <string name="save">Salvar</string>
+</resources>
