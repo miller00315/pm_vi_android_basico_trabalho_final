@@ -5,10 +5,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.miller.oliveira.marcatruco.databinding.ActivityProvideNamesBinding
 
 class ProvideNamesActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityProvideNamesBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        binding = ActivityProvideNamesBinding.inflate(layoutInflater)
+
         enableEdgeToEdge()
         setContentView(R.layout.activity_provide_names)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -16,5 +23,6 @@ class ProvideNamesActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
     }
 }
