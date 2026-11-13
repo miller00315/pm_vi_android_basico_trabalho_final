@@ -18,26 +18,22 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/suits"
-            android:textColor="@color/gold"
-            android:textSize="20sp" />
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="-48dp"
+            android:layout_marginBottom="-40dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_launcher_foreground" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textAppearance="@style/TextAppearance.MarcaTruco.Title" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:rotation="-2"
-            android:text="@string/tagline"
-            android:textAppearance="@style/TextAppearance.MarcaTruco.Tagline" />
+        <ImageView
+            android:id="@+id/suits_row"
+            android:layout_width="108dp"
+            android:layout_height="24dp"
+            android:layout_marginBottom="20dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_suits_row" />
 
         <com.google.android.material.card.MaterialCardView
             style="@style/Widget.MarcaTruco.Card"
@@ -50,24 +46,22 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp">
 
-                <TextView
+                <ImageView
                     android:id="@+id/suit_top_player_one"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/suit_heart"
-                    android:textAppearance="@style/TextAppearance.MarcaTruco.Suit"
-                    android:textColor="@color/suit_red"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_suit_heart"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/suit_bottom_player_one"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:importantForAccessibility="no"
                     android:rotation="180"
-                    android:text="@string/suit_heart"
-                    android:textAppearance="@style/TextAppearance.MarcaTruco.Suit"
-                    android:textColor="@color/suit_red"
+                    android:src="@drawable/ic_suit_heart"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -98,16 +92,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/player_one_title" />
 
-                <TextView
-                    android:id="@+id/goal_player_one"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/score_goal"
-                    android:textAppearance="@style/TextAppearance.MarcaTruco.Caption"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/player_one_current_value" />
-
                 <com.google.android.material.progressindicator.LinearProgressIndicator
                     android:id="@+id/player_one_progress"
                     android:layout_width="0dp"
@@ -117,7 +101,7 @@
                     app:indicatorColor="@color/suit_red"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/goal_player_one"
+                    app:layout_constraintTop_toBottomOf="@+id/player_one_current_value"
                     app:trackColor="@color/card_track"
                     app:trackCornerRadius="4dp"
                     app:trackThickness="8dp" />
@@ -180,19 +164,15 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <TextView
+        <ImageView
             android:id="@+id/versus_badge"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_marginVertical="-12dp"
-            android:background="@drawable/bg_vs_badge"
             android:elevation="12dp"
-            android:fontFamily="sans-serif-black"
-            android:gravity="center"
+            android:importantForAccessibility="no"
             android:rotation="-8"
-            android:text="@string/versus"
-            android:textColor="@color/ink"
-            android:textSize="18sp" />
+            android:src="@drawable/ic_versus" />
 
         <com.google.android.material.card.MaterialCardView
             style="@style/Widget.MarcaTruco.Card"
@@ -205,24 +185,22 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp">
 
-                <TextView
+                <ImageView
                     android:id="@+id/suit_top_player_two"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/suit_spade"
-                    android:textAppearance="@style/TextAppearance.MarcaTruco.Suit"
-                    android:textColor="@color/ink"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_suit_spade"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/suit_bottom_player_two"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:importantForAccessibility="no"
                     android:rotation="180"
-                    android:text="@string/suit_spade"
-                    android:textAppearance="@style/TextAppearance.MarcaTruco.Suit"
-                    android:textColor="@color/ink"
+                    android:src="@drawable/ic_suit_spade"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -253,16 +231,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/player_two_title" />
 
-                <TextView
-                    android:id="@+id/goal_player_two"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/score_goal"
-                    android:textAppearance="@style/TextAppearance.MarcaTruco.Caption"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/player_two_value" />
-
                 <com.google.android.material.progressindicator.LinearProgressIndicator
                     android:id="@+id/player_two_progress"
                     android:layout_width="0dp"
@@ -272,7 +240,7 @@
                     app:indicatorColor="@color/ink"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/goal_player_two"
+                    app:layout_constraintTop_toBottomOf="@+id/player_two_value"
                     app:trackColor="@color/card_track"
                     app:trackCornerRadius="4dp"
                     app:trackThickness="8dp" />

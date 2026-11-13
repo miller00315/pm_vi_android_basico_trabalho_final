@@ -31,7 +31,7 @@ class ProvideNamesActivityTest {
     }
 
     @Test
-    fun salvarDevolveOsNomesSemEspacos() {
+    fun confirmarDevolveOsNomesSemEspacos() {
         ActivityScenario.launchActivityForResult(ProvideNamesActivity::class.java).use { scenario ->
             onView(withId(R.id.player_one_name)).perform(replaceText("  Ana "))
             onView(withId(R.id.player_two_name)).perform(replaceText("Bia"))
@@ -46,7 +46,7 @@ class ProvideNamesActivityTest {
     }
 
     @Test
-    fun salvarComCamposVaziosDevolveTextoVazio() {
+    fun confirmarComCamposVaziosDevolveTextoVazio() {
         ActivityScenario.launchActivityForResult(ProvideNamesActivity::class.java).use { scenario ->
             closeSoftKeyboard()
             onView(withId(R.id.button)).perform(click())
@@ -66,6 +66,33 @@ class ProvideNamesActivityTest {
             onView(withContentDescription(upDescription)).perform(click())
 
             assertEquals(Activity.RESULT_CANCELED, scenario.result.resultCode)
+        }
+    }
+
+    @Test
+    fun mostraRotulosEBotaoConfirmar() {
+        ActivityScenario.launch(ProvideNamesActivity::class.java).use {
+            onView(withText(R.string.label_player_one)).check(matches(isDisplayed()))
+            onView(withText(R.string.label_player_two)).check(matches(isDisplayed()))
+            onView(withId(R.id.button)).check(matches(withText(R.string.confirm)))
+        }
+    }
+
+    @Test
+    fun textoDigitadoSobreviveARecriacaoDaTela() {
+        ActivityScenario.launchActivityForResult(ProvideNamesActivity::class.java).use { scenario ->
+            onView(withId(R.id.player_one_name)).perform(replaceText("Ana"))
+            onView(withId(R.id.player_two_name)).perform(replaceText("Bia"))
+            closeSoftKeyboard()
+
+            scenario.recreate()
+
+            onView(withId(R.id.player_one_name)).check(matches(withText("Ana")))
+            onView(withId(R.id.player_two_name)).check(matches(withText("Bia")))
+
+            closeSoftKeyboard()
+            onView(withId(R.id.button)).perform(click())
+            assertEquals("Ana", scenario.result.resultData.getStringExtra(IntentKeys.PLAYER_ONE_NAME))
         }
     }
 }

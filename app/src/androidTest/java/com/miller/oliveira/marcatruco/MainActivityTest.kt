@@ -86,11 +86,17 @@ class MainActivityTest {
         click(R.id.button_add_one_player_two)
         renamePlayers("Ana", "Bia")
 
+        click(R.id.button_add_twelve_player_two)
+        click(R.id.button_add_three_player_one)
+
         scenarioRule.scenario.recreate()
 
-        assertScore(9, 1)
+        assertScore(3, 0)
         assertText(R.id.player_one_title, "Ana")
         assertText(R.id.player_two_title, "Bia")
+
+        click(R.id.button_play_history)
+        assertText(R.id.player_two_victories, "1")
     }
 
     @Test
@@ -133,14 +139,19 @@ class MainActivityTest {
     }
 
     @Test
-    fun zerarHistoricoZeraPlacarEVitorias() {
+    fun zerarHistoricoZeraPlacarVitoriasENomes() {
+        renamePlayers("Ana", "Bia")
         click(R.id.button_add_twelve_player_one)
         click(R.id.button_add_six_player_two)
 
         click(R.id.button_restart_history)
         assertScore(0, 0)
+        assertText(R.id.player_one_title, context.getString(R.string.player_one))
+        assertText(R.id.player_two_title, context.getString(R.string.player_two))
 
         click(R.id.button_play_history)
+        assertText(R.id.player_one_name, context.getString(R.string.player_one))
+        assertText(R.id.player_two_name, context.getString(R.string.player_two))
         assertText(R.id.player_one_victories, "0")
         assertText(R.id.player_two_victories, "0")
     }

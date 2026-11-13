@@ -1,7 +1,11 @@
 package com.miller.oliveira.marcatruco
 
+/**
+ * [defaultName] é o nome usado quando o histórico é zerado.
+ */
 class Player(
-    var name: String,
+    val defaultName: String,
+    var name: String = defaultName,
     var points: Int = 0,
     var victories: Int = 0,
 )
@@ -37,8 +41,12 @@ class TrucoGame(val playerOne: Player, val playerTwo: Player) {
         players.forEach { it.points = 0 }
     }
 
+    /** Volta tudo ao início: pontos, vitórias e nomes padrão. */
     fun restartHistory() {
-        players.forEach { it.victories = 0 }
+        players.forEach {
+            it.victories = 0
+            it.name = it.defaultName
+        }
         resetPoints()
     }
 

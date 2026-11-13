@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Selo entre as cartas: círculo dourado com um raio -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="56dp"
+    android:height="56dp"
+    android:viewportWidth="56"
+    android:viewportHeight="56">
+    <path
+        android:fillColor="@color/gold"
+        android:pathData="M28,3a25,25 0 1,0 0.001,0z"
+        android:strokeColor="@color/card_cream"
+        android:strokeWidth="3" />
+    <path
+        android:fillColor="@color/ink"
+        android:pathData="M31,11 L18,31 H27 L23,45 L38,24 H29 Z" />
+</vector>

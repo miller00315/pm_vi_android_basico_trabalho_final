@@ -64,6 +64,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun restorePlayer(state: Bundle?, index: Int, defaultName: String) = Player(
+        defaultName = defaultName,
         name = state?.getString(KEY_NAME + index) ?: defaultName,
         points = state?.getInt(KEY_POINTS + index) ?: 0,
         victories = state?.getInt(KEY_VICTORIES + index) ?: 0,
@@ -130,6 +131,7 @@ class MainActivity : AppCompatActivity() {
     private fun restartHistoryOnClick() {
         game.restartHistory()
         updateScreen()
+        Toast.makeText(this, R.string.history_restarted, Toast.LENGTH_SHORT).show()
     }
 
     private fun provideNameOnClick() {

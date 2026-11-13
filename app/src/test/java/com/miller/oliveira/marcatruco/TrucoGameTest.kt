@@ -103,7 +103,9 @@ class TrucoGameTest {
     }
 
     @Test
-    fun `restartHistory zera pontos e vitorias`() {
+    fun `restartHistory zera pontos vitorias e nomes`() {
+        game.rename(playerOne, "Ana")
+        game.rename(playerTwo, "Bia")
         game.addPoints(playerOne, 12)
         game.addPoints(playerTwo, 12)
         game.addPoints(playerTwo, 5)
@@ -114,6 +116,16 @@ class TrucoGameTest {
             assertEquals(0, it.points)
             assertEquals(0, it.victories)
         }
+        assertEquals("Jogador 1", playerOne.name)
+        assertEquals("Jogador 2", playerTwo.name)
+    }
+
+    @Test
+    fun `nome padrao continua o mesmo depois de renomear`() {
+        game.rename(playerOne, "Ana")
+
+        assertEquals("Ana", playerOne.name)
+        assertEquals("Jogador 1", playerOne.defaultName)
     }
 
     @Test

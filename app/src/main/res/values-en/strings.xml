@@ -1,0 +1,18 @@
+<resources>
+    <string name="play_history">Match History</string>
+    <string name="restart_history">Reset History</string>
+    <string name="provide_names">Set Names</string>
+    <string name="player_one">Player 1</string>
+    <string name="player_two">Player 2</string>
+    <string name="player_name_hint">Player name</string>
+    <string name="play_history_title">Match History</string>
+    <string name="provide_names_title">Player Names</string>
+    <string name="player_won">%s wins!</string>
+    <string name="victories_label">wins</string>
+    <string name="history_header">Who rules the table?</string>
+    <string name="names_header">Who\'s at the table?</string>
+    <string name="history_restarted">History reset!</string>
+    <string name="label_player_one">Player 1:</string>
+    <string name="label_player_two">Player 2:</string>
+    <string name="confirm">Confirm</string>
+</resources>

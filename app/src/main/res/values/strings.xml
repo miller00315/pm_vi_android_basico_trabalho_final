@@ -1,28 +1,27 @@
 <resources>
-    <string name="app_name">Marca Truco</string>
-    <string name="add_one">+1</string>
-    <string name="add_three">+3</string>
-    <string name="add_six">+6</string>
-    <string name="add_nine">+9</string>
-    <string name="add_twelve">+12</string>
+    <string name="app_name" translatable="false">Marca Truco</string>
+    <string name="add_one" translatable="false">+1</string>
+    <string name="add_three" translatable="false">+3</string>
+    <string name="add_six" translatable="false">+6</string>
+    <string name="add_nine" translatable="false">+9</string>
+    <string name="add_twelve" translatable="false">+12</string>
     <string name="play_history">Hist. de Jogadas</string>
     <string name="restart_history">Zerar Histórico</string>
     <string name="provide_names">Inf. Nomes</string>
     <string name="player_one">Jogador 1</string>
     <string name="player_two">Jogador 2</string>
-    <string name="initial_score">XX</string>
+    <string name="initial_score" translatable="false">XX</string>
     <string name="player_name_hint">Nome do jogador</string>
-    <string name="save">Salvar</string>
     <string name="play_history_title">Histórico de Jogadas</string>
     <string name="provide_names_title">Nomes dos Jogadores</string>
     <string name="player_won">%s venceu!</string>
-    <string name="tagline">Truco! Seis! Nove! Doze!</string>
-    <string name="versus">VS</string>
-    <string name="suits">♠ ♥ ♣ ♦</string>
-    <string name="suit_heart">♥</string>
-    <string name="suit_spade">♠</string>
-    <string name="score_goal">rumo aos 12</string>
+    <string name="suit_heart" translatable="false">♥</string>
+    <string name="suit_spade" translatable="false">♠</string>
     <string name="victories_label">vitórias</string>
     <string name="history_header">Quem manda na mesa?</string>
     <string name="names_header">Quem senta na mesa?</string>
+    <string name="history_restarted">Histórico zerado!</string>
+    <string name="label_player_one">Jogador 1:</string>
+    <string name="label_player_two">Jogador 2:</string>
+    <string name="confirm">Confirmar</string>
 </resources>

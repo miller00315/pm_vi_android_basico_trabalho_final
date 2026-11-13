@@ -69,4 +69,19 @@ class PlayHistoryActivityTest {
             assertEquals(Activity.RESULT_CANCELED, scenario.result.resultCode)
         }
     }
+
+    @Test
+    fun dadosSobrevivemARecriacaoDaTela() {
+        val intent = Intent(context, PlayHistoryActivity::class.java).apply {
+            putExtra(IntentKeys.PLAYER_ONE_NAME, "Ana")
+            putExtra(IntentKeys.PLAYER_TWO_VICTORIES, 4)
+        }
+
+        ActivityScenario.launch<PlayHistoryActivity>(intent).use { scenario ->
+            scenario.recreate()
+
+            assertText(R.id.player_one_name, "Ana")
+            assertText(R.id.player_two_victories, "4")
+        }
+    }
 }

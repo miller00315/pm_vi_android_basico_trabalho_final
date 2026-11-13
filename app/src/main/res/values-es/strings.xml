@@ -1,0 +1,18 @@
+<resources>
+    <string name="play_history">Historial</string>
+    <string name="restart_history">Reiniciar historial</string>
+    <string name="provide_names">Nombres</string>
+    <string name="player_one">Jugador 1</string>
+    <string name="player_two">Jugador 2</string>
+    <string name="player_name_hint">Nombre del jugador</string>
+    <string name="play_history_title">Historial de partidas</string>
+    <string name="provide_names_title">Nombres de los jugadores</string>
+    <string name="player_won">¡%s ganó!</string>
+    <string name="victories_label">victorias</string>
+    <string name="history_header">¿Quién manda en la mesa?</string>
+    <string name="names_header">¿Quién se sienta a la mesa?</string>
+    <string name="history_restarted">¡Historial reiniciado!</string>
+    <string name="label_player_one">Jugador 1:</string>
+    <string name="label_player_two">Jugador 2:</string>
+    <string name="confirm">Confirmar</string>
+</resources>

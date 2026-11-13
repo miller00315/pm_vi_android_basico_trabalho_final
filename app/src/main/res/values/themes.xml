@@ -74,17 +74,6 @@
     </style>
 
     <!-- Textos -->
-    <style name="TextAppearance.MarcaTruco.Title" parent="">
-        <item name="android:fontFamily">sans-serif-black</item>
-        <item name="android:textSize">34sp</item>
-        <item name="android:textColor">@color/cream_text</item>
-        <item name="android:letterSpacing">0.08</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:shadowColor">#66000000</item>
-        <item name="android:shadowDy">4</item>
-        <item name="android:shadowRadius">6</item>
-    </style>
-
     <style name="TextAppearance.MarcaTruco.Tagline" parent="">
         <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:textSize">18sp</item>
