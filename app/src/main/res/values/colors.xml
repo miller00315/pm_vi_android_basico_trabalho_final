@@ -2,4 +2,20 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Mesa de feltro -->
+    <color name="felt_light">#FF1F8A5B</color>
+    <color name="felt_dark">#FF0A3B2A</color>
+
+    <!-- Cartas -->
+    <color name="card_cream">#FFFFF8E7</color>
+    <color name="card_track">#FFF1E4C3</color>
+    <color name="cream_text">#FFFFF3D6</color>
+    <color name="ink">#FF1D1D1F</color>
+    <color name="ink_soft">#FF5C5446</color>
+    <color name="suit_red">#FFD62839</color>
+
+    <!-- Destaques -->
+    <color name="gold">#FFF4B942</color>
+    <color name="gold_dark">#FFC98E0B</color>
 </resources>

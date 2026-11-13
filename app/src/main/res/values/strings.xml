@@ -16,4 +16,13 @@
     <string name="play_history_title">Histórico de Jogadas</string>
     <string name="provide_names_title">Nomes dos Jogadores</string>
     <string name="player_won">%s venceu!</string>
+    <string name="tagline">Truco! Seis! Nove! Doze!</string>
+    <string name="versus">VS</string>
+    <string name="suits">♠ ♥ ♣ ♦</string>
+    <string name="suit_heart">♥</string>
+    <string name="suit_spade">♠</string>
+    <string name="score_goal">rumo aos 12</string>
+    <string name="victories_label">vitórias</string>
+    <string name="history_header">Quem manda na mesa?</string>
+    <string name="names_header">Quem senta na mesa?</string>
 </resources>

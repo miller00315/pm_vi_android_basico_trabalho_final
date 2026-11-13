@@ -1,7 +1,13 @@
 package com.miller.oliveira.marcatruco
 
+import android.graphics.Color
 import android.os.SystemClock
 import android.view.View
+import android.view.animation.OvershootInterpolator
+import android.widget.TextView
+import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
@@ -37,12 +43,40 @@ fun View.setOnSingleClickListener(
     intervalMs: Long = DEFAULT_CLICK_INTERVAL_MS,
     onClick: (View) -> Unit,
 ) {
-    var lastClickTime = 0L
+    val throttle = ClickThrottle(intervalMs, SystemClock::elapsedRealtime)
 
     setOnClickListener { view ->
-        val now = SystemClock.elapsedRealtime()
-        if (now - lastClickTime < intervalMs) return@setOnClickListener
-        lastClickTime = now
-        onClick(view)
+        if (throttle.tryAcquire()) onClick(view)
     }
+}
+
+/**
+ * Edge-to-edge com ícones claros nas barras do sistema, já que o fundo do app é escuro (feltro).
+ */
+fun ComponentActivity.enableEdgeToEdgeWithLightIcons() {
+    enableEdgeToEdge(
+        statusBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
+        navigationBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
+    )
+}
+
+private const val BUMP_SCALE = 1.35f
+private const val BUMP_DURATION_MS = 350L
+
+/**
+ * Troca o texto e, se ele mudou, dá um "pulinho" no TextView.
+ */
+fun TextView.setTextWithBump(newText: CharSequence) {
+    if (text.toString() == newText.toString()) return
+
+    text = newText
+    animate().cancel()
+    scaleX = BUMP_SCALE
+    scaleY = BUMP_SCALE
+    animate()
+        .scaleX(1f)
+        .scaleY(1f)
+        .setDuration(BUMP_DURATION_MS)
+        .setInterpolator(OvershootInterpolator(3f))
+        .start()
 }

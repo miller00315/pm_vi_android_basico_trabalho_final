@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_felt"
     android:orientation="vertical"
     tools:context=".PlayHistoryActivity">
 
@@ -14,49 +15,141 @@
         android:layout_height="?attr/actionBarSize"
         app:title="@string/play_history_title" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="16dp">
+        android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/player_one_name"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/player_one"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:clipChildren="false"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/player_one_victories"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="@string/initial_score"
-            app:layout_constraintBottom_toBottomOf="@+id/player_one_name"
-            app:layout_constraintStart_toEndOf="@+id/player_one_name"
-            app:layout_constraintTop_toTopOf="@+id/player_one_name" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🏆"
+                android:textSize="56sp"
+                tools:ignore="HardcodedText" />
 
-        <TextView
-            android:id="@+id/player_two_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/player_two"
-            app:layout_constraintStart_toStartOf="@+id/player_one_name"
-            app:layout_constraintTop_toBottomOf="@+id/player_one_name" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:rotation="-2"
+                android:text="@string/history_header"
+                android:textAppearance="@style/TextAppearance.MarcaTruco.Tagline"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/player_two_victories"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="@string/initial_score"
-            app:layout_constraintBottom_toBottomOf="@+id/player_two_name"
-            app:layout_constraintStart_toEndOf="@+id/player_two_name"
-            app:layout_constraintTop_toTopOf="@+id/player_two_name" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:orientation="horizontal">
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.MarcaTruco.Card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:rotation="-2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/suit_heart"
+                        android:textAppearance="@style/TextAppearance.MarcaTruco.Suit"
+                        android:textColor="@color/suit_red" />
+
+                    <TextView
+                        android:id="@+id/player_one_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="@string/player_one"
+                        android:textAppearance="@style/TextAppearance.MarcaTruco.PlayerName" />
+
+                    <TextView
+                        android:id="@+id/player_one_victories"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/initial_score"
+                        android:textAppearance="@style/TextAppearance.MarcaTruco.Score"
+                        android:textColor="@color/suit_red" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/victories_label"
+                        android:textAppearance="@style/TextAppearance.MarcaTruco.Caption" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.MarcaTruco.Card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:rotation="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/suit_spade"
+                        android:textAppearance="@style/TextAppearance.MarcaTruco.Suit"
+                        android:textColor="@color/ink" />
+
+                    <TextView
+                        android:id="@+id/player_two_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="@string/player_two"
+                        android:textAppearance="@style/TextAppearance.MarcaTruco.PlayerName" />
+
+                    <TextView
+                        android:id="@+id/player_two_victories"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/initial_score"
+                        android:textAppearance="@style/TextAppearance.MarcaTruco.Score"
+                        android:textColor="@color/ink" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/victories_label"
+                        android:textAppearance="@style/TextAppearance.MarcaTruco.Caption" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

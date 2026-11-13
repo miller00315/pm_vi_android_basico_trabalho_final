@@ -2,7 +2,6 @@ package com.miller.oliveira.marcatruco
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.miller.oliveira.marcatruco.databinding.ActivityProvideNamesBinding
 
@@ -15,7 +14,7 @@ class ProvideNamesActivity : AppCompatActivity() {
 
         binding = ActivityProvideNamesBinding.inflate(layoutInflater)
 
-        enableEdgeToEdge()
+        enableEdgeToEdgeWithLightIcons()
         setContentView(binding.root)
         binding.root.applySystemBarsPadding()
 

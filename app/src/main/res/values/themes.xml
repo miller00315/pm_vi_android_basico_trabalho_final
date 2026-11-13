@@ -1,9 +1,120 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.MarcaTruco" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <!-- Tema "mesa de truco": o mesmo visual no modo claro e escuro. -->
+    <style name="Base.Theme.MarcaTruco" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/suit_red</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/gold</item>
+        <item name="colorOnSecondary">@color/ink</item>
+        <item name="colorSurface">@color/card_cream</item>
+        <item name="colorOnSurface">@color/ink</item>
+        <item name="android:windowBackground">@color/felt_dark</item>
+        <item name="elevationOverlayEnabled">false</item>
+        <item name="materialButtonStyle">@style/Widget.MarcaTruco.Button</item>
+        <item name="toolbarStyle">@style/Widget.MarcaTruco.Toolbar</item>
     </style>
 
     <style name="Theme.MarcaTruco" parent="Base.Theme.MarcaTruco" />
+
+    <!-- Cartas dos jogadores -->
+    <style name="Widget.MarcaTruco.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/card_cream</item>
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">8dp</item>
+        <item name="strokeColor">@color/gold</item>
+        <item name="strokeWidth">3dp</item>
+    </style>
+
+    <!-- Botões -->
+    <style name="Widget.MarcaTruco.Button" parent="Widget.Material3.Button">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="backgroundTint">@color/gold</item>
+        <item name="android:textColor">@color/ink</item>
+    </style>
+
+    <style name="Widget.MarcaTruco.Button.Point">
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.MarcaTruco.Button.Point.Red">
+        <item name="backgroundTint">@color/suit_red</item>
+    </style>
+
+    <style name="Widget.MarcaTruco.Button.Point.Ink">
+        <item name="backgroundTint">@color/ink</item>
+    </style>
+
+    <style name="Widget.MarcaTruco.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="strokeColor">@color/cream_text</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="android:textColor">@color/cream_text</item>
+    </style>
+
+    <!-- Toolbar transparente sobre o feltro -->
+    <style name="Widget.MarcaTruco.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="titleTextColor">@color/cream_text</item>
+        <item name="titleTextAppearance">@style/TextAppearance.MarcaTruco.ToolbarTitle</item>
+        <item name="navigationIconTint">@color/cream_text</item>
+    </style>
+
+    <style name="TextAppearance.MarcaTruco.ToolbarTitle" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:fontFamily">sans-serif-black</item>
+    </style>
+
+    <!-- Textos -->
+    <style name="TextAppearance.MarcaTruco.Title" parent="">
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textSize">34sp</item>
+        <item name="android:textColor">@color/cream_text</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:shadowColor">#66000000</item>
+        <item name="android:shadowDy">4</item>
+        <item name="android:shadowRadius">6</item>
+    </style>
+
+    <style name="TextAppearance.MarcaTruco.Tagline" parent="">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textColor">@color/gold</item>
+    </style>
+
+    <style name="TextAppearance.MarcaTruco.PlayerName" parent="">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/ink</item>
+    </style>
+
+    <style name="TextAppearance.MarcaTruco.Score" parent="">
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textSize">64sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TextAppearance.MarcaTruco.Suit" parent="">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.MarcaTruco.Caption" parent="">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/ink_soft</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
 </resources>

@@ -1,7 +1,6 @@
 package com.miller.oliveira.marcatruco
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.miller.oliveira.marcatruco.databinding.ActivityPlayHistoryBinding
 
@@ -14,7 +13,7 @@ class PlayHistoryActivity : AppCompatActivity() {
 
         binding = ActivityPlayHistoryBinding.inflate(layoutInflater)
 
-        enableEdgeToEdge()
+        enableEdgeToEdgeWithLightIcons()
         setContentView(binding.root)
         binding.root.applySystemBarsPadding()
 
