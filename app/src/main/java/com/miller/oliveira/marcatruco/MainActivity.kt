@@ -2,36 +2,48 @@ package com.miller.oliveira.marcatruco
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.miller.oliveira.marcatruco.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        private const val KEY_PLAYER_ONE_NAME = "PLAYER_ONE_NAME"
-        private const val KEY_PLAYER_TWO_NAME = "PLAYER_TWO_NAME"
-        private const val KEY_PLAYER_ONE_POINT = "PLAYER_ONE_POINT"
-        private const val KEY_PLAYER_TWO_POINT = "PLAYER_TWO_POINT"
+        private const val WINNING_SCORE = 12
+
+        private const val KEY_NAME = "NAME_"
+        private const val KEY_POINTS = "POINTS_"
+        private const val KEY_VICTORIES = "VICTORIES_"
+    }
+
+    private class Player(var name: String) {
+        var points = 0
+        var victories = 0
     }
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var playerOneName: String
-    private lateinit var playerTwoName: String
-
-    private var playerOnePoint = 0
-    private var playerTwoPoint = 0
+    private lateinit var playerOne: Player
+    private lateinit var playerTwo: Player
+    private val players get() = listOf(playerOne, playerTwo)
 
     private val providerLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
-                print("")
+            if (result.resultCode != RESULT_OK) return@registerForActivityResult
+
+            result.data?.let { data ->
+                updateName(playerOne, data.getStringExtra(IntentKeys.PLAYER_ONE_NAME))
+                updateName(playerTwo, data.getStringExtra(IntentKeys.PLAYER_TWO_NAME))
+                updateScreen()
             }
         }
+
+    private fun updateName(player: Player, name: String?) {
+        if (!name.isNullOrBlank()) player.name = name
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +52,7 @@ class MainActivity : AppCompatActivity() {
 
         enableEdgeToEdge()
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        binding.root.applySystemBarsPadding()
 
         restoreState(savedInstanceState)
         updateScreen()
@@ -56,64 +64,93 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState.putString(KEY_PLAYER_ONE_NAME, playerOneName)
-        outState.putString(KEY_PLAYER_TWO_NAME, playerTwoName)
-        outState.putInt(KEY_PLAYER_ONE_POINT, playerOnePoint)
-        outState.putInt(KEY_PLAYER_TWO_POINT, playerTwoPoint)
-    }
-
-    private fun restoreState(savedInstanceState: Bundle?) {
-        playerOneName = savedInstanceState?.getString(KEY_PLAYER_ONE_NAME)
-            ?: getString(R.string.player_one)
-        playerTwoName = savedInstanceState?.getString(KEY_PLAYER_TWO_NAME)
-            ?: getString(R.string.player_two)
-        playerOnePoint = savedInstanceState?.getInt(KEY_PLAYER_ONE_POINT) ?: 0
-        playerTwoPoint = savedInstanceState?.getInt(KEY_PLAYER_TWO_POINT) ?: 0
-    }
-
-    private fun updateScreen() {
-        binding.playerOneTitle.text = playerOneName
-        binding.playerTwoTitle.text = playerTwoName
-        binding.playerOneCurrentValue.text = playerOnePoint.toString()
-        binding.playerTwoValue.text = playerTwoPoint.toString()
-    }
-
-    private fun setupNavigationButtons() {
-        binding.buttonProvideNames.setOnClickListener { provideNameOnClick() }
-        binding.buttonRestartHistory.setOnClickListener { restartHistoryOnClick() }
-        binding.buttonPlayHistory.setOnClickListener { playHistoryOnClick() }
-    }
-
-    private fun setupAddPointButtons() {
-        val buttons = mapOf(
-            binding.buttonAddOnePlayerOne to (1 to 1),
-            binding.buttonAddThreePlayerOne to (1 to 3),
-            binding.buttonAddSixPlayerOne to (1 to 6),
-            binding.buttonAddNinePlayerOne to (1 to 9),
-            binding.buttonAddTwelvePlayerOne to (1 to 12),
-            binding.buttonAddOnePlayerTwo to (2 to 1),
-            binding.buttonAddThreePlayerTwo to (2 to 3),
-            binding.buttonAddSixPlayerTwo to (2 to 6),
-            binding.buttonAddNinePlayerTwo to (2 to 9),
-            binding.buttonAddTwelvePlayerTwo to (2 to 12),
-        )
-
-        buttons.forEach { (button, value) ->
-            val (player, points) = value
-            button.setOnClickListener { addPointOnClick(player, points) }
+        players.forEachIndexed { index, player ->
+            outState.putString(KEY_NAME + index, player.name)
+            outState.putInt(KEY_POINTS + index, player.points)
+            outState.putInt(KEY_VICTORIES + index, player.victories)
         }
     }
 
-    private fun addPointOnClick(player: Int, points: Int) {
-        if (player == 1) playerOnePoint += points else playerTwoPoint += points
+    private fun restoreState(savedInstanceState: Bundle?) {
+        playerOne = restorePlayer(savedInstanceState, 0, getString(R.string.player_one))
+        playerTwo = restorePlayer(savedInstanceState, 1, getString(R.string.player_two))
+    }
+
+    private fun restorePlayer(state: Bundle?, index: Int, defaultName: String) =
+        Player(state?.getString(KEY_NAME + index) ?: defaultName).apply {
+            points = state?.getInt(KEY_POINTS + index) ?: 0
+            victories = state?.getInt(KEY_VICTORIES + index) ?: 0
+        }
+
+    private fun updateScreen() = with(binding) {
+        playerOneTitle.text = playerOne.name
+        playerTwoTitle.text = playerTwo.name
+        playerOneCurrentValue.text = playerOne.points.toString()
+        playerTwoValue.text = playerTwo.points.toString()
+    }
+
+    private fun setupNavigationButtons() = with(binding) {
+        buttonProvideNames.setOnSingleClickListener { provideNameOnClick() }
+        buttonRestartHistory.setOnSingleClickListener { restartHistoryOnClick() }
+        buttonPlayHistory.setOnSingleClickListener { playHistoryOnClick() }
+    }
+
+    private fun setupAddPointButtons() = with(binding) {
+        bindPointButtons(
+            playerOne,
+            buttonAddOnePlayerOne to 1,
+            buttonAddThreePlayerOne to 3,
+            buttonAddSixPlayerOne to 6,
+            buttonAddNinePlayerOne to 9,
+            buttonAddTwelvePlayerOne to 12,
+        )
+        bindPointButtons(
+            playerTwo,
+            buttonAddOnePlayerTwo to 1,
+            buttonAddThreePlayerTwo to 3,
+            buttonAddSixPlayerTwo to 6,
+            buttonAddNinePlayerTwo to 9,
+            buttonAddTwelvePlayerTwo to 12,
+        )
+    }
+
+    private fun bindPointButtons(player: Player, vararg buttons: Pair<Button, Int>) {
+        buttons.forEach { (button, points) ->
+            button.setOnSingleClickListener { addPoints(player, points) }
+        }
+    }
+
+    private fun addPoints(player: Player, points: Int) {
+        player.points += points
+
+        if (player.points >= WINNING_SCORE) {
+            player.victories++
+            resetPoints()
+            Toast.makeText(this, getString(R.string.player_won, player.name), Toast.LENGTH_SHORT)
+                .show()
+        }
+
         updateScreen()
     }
 
+    private fun resetPoints() {
+        players.forEach { it.points = 0 }
+    }
+
     private fun playHistoryOnClick() {
-        startActivity(Intent(this, PlayHistoryActivity::class.java))
+        val intent = Intent(this, PlayHistoryActivity::class.java).apply {
+            putExtra(IntentKeys.PLAYER_ONE_NAME, playerOne.name)
+            putExtra(IntentKeys.PLAYER_TWO_NAME, playerTwo.name)
+            putExtra(IntentKeys.PLAYER_ONE_VICTORIES, playerOne.victories)
+            putExtra(IntentKeys.PLAYER_TWO_VICTORIES, playerTwo.victories)
+        }
+        startActivity(intent)
     }
 
     private fun restartHistoryOnClick() {
+        players.forEach { it.victories = 0 }
+        resetPoints()
+        updateScreen()
     }
 
     private fun provideNameOnClick() {

@@ -1,10 +1,9 @@
 package com.miller.oliveira.marcatruco
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.miller.oliveira.marcatruco.databinding.ActivityProvideNamesBinding
 
 class ProvideNamesActivity : AppCompatActivity() {
@@ -18,11 +17,26 @@ class ProvideNamesActivity : AppCompatActivity() {
 
         enableEdgeToEdge()
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        binding.root.applySystemBarsPadding()
+
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        binding.button.setOnSingleClickListener { confirmButtonClick() }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return true
+    }
+
+    private fun confirmButtonClick() {
+        val result = Intent().apply {
+            putExtra(IntentKeys.PLAYER_ONE_NAME, binding.playerOneName.text.toString().trim())
+            putExtra(IntentKeys.PLAYER_TWO_NAME, binding.playerTwoName.text.toString().trim())
         }
 
+        setResult(RESULT_OK, result)
+        finish()
     }
 }

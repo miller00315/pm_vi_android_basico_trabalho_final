@@ -13,4 +13,7 @@
     <string name="initial_score">XX</string>
     <string name="player_name_hint">Nome do jogador</string>
     <string name="save">Salvar</string>
+    <string name="play_history_title">Histórico de Jogadas</string>
+    <string name="provide_names_title">Nomes dos Jogadores</string>
+    <string name="player_won">%s venceu!</string>
 </resources>

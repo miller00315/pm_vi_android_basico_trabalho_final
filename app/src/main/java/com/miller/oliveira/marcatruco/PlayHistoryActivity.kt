@@ -3,8 +3,6 @@ package com.miller.oliveira.marcatruco
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.miller.oliveira.marcatruco.databinding.ActivityPlayHistoryBinding
 
 class PlayHistoryActivity : AppCompatActivity() {
@@ -18,10 +16,23 @@ class PlayHistoryActivity : AppCompatActivity() {
 
         enableEdgeToEdge()
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        binding.root.applySystemBarsPadding()
+
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        showHistory()
+    }
+
+    private fun showHistory() = with(binding) {
+        intent.getStringExtra(IntentKeys.PLAYER_ONE_NAME)?.let { playerOneName.text = it }
+        intent.getStringExtra(IntentKeys.PLAYER_TWO_NAME)?.let { playerTwoName.text = it }
+        playerOneVictories.text = intent.getIntExtra(IntentKeys.PLAYER_ONE_VICTORIES, 0).toString()
+        playerTwoVictories.text = intent.getIntExtra(IntentKeys.PLAYER_TWO_VICTORIES, 0).toString()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return true
     }
 }
