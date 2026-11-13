@@ -24,4 +24,5 @@
     <string name="label_player_one">Jogador 1:</string>
     <string name="label_player_two">Jogador 2:</string>
     <string name="confirm">Confirmar</string>
+    <string name="one_button_at_a_time">Toque em um botão de cada vez</string>
 </resources>

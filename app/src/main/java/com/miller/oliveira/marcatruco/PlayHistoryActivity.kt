@@ -1,10 +1,9 @@
 package com.miller.oliveira.marcatruco
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.miller.oliveira.marcatruco.databinding.ActivityPlayHistoryBinding
 
-class PlayHistoryActivity : AppCompatActivity() {
+class PlayHistoryActivity : SingleTouchActivity() {
 
     private lateinit var binding: ActivityPlayHistoryBinding
 

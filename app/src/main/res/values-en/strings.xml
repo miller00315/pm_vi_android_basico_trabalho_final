@@ -15,4 +15,5 @@
     <string name="label_player_one">Player 1:</string>
     <string name="label_player_two">Player 2:</string>
     <string name="confirm">Confirm</string>
+    <string name="one_button_at_a_time">Tap one button at a time</string>
 </resources>

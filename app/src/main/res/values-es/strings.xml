@@ -15,4 +15,5 @@
     <string name="label_player_one">Jugador 1:</string>
     <string name="label_player_two">Jugador 2:</string>
     <string name="confirm">Confirmar</string>
+    <string name="one_button_at_a_time">Toca un botón a la vez</string>
 </resources>

@@ -5,10 +5,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import com.miller.oliveira.marcatruco.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : SingleTouchActivity() {
 
     companion object {
         private const val KEY_NAME = "NAME_"

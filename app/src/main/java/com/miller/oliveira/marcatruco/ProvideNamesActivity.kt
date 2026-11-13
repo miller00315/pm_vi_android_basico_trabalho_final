@@ -2,10 +2,9 @@ package com.miller.oliveira.marcatruco
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.miller.oliveira.marcatruco.databinding.ActivityProvideNamesBinding
 
-class ProvideNamesActivity : AppCompatActivity() {
+class ProvideNamesActivity : SingleTouchActivity() {
 
     private lateinit var binding: ActivityProvideNamesBinding
 
