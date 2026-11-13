@@ -19,7 +19,8 @@ Projeto desenvolvido como trabalho final da disciplina de Android (Componentes V
 - **Zerar histórico**: volta pontuação, vitórias e nomes aos valores iniciais e exibe um Toast de confirmação.
 - **Rotação de tela**: nenhum dado é perdido ao girar o aparelho.
 - **Layout responsivo**: versão própria para paisagem, com as cartas lado a lado.
-- **Proteção contra duplo clique**: toques repetidos em menos de 600 ms são ignorados.
+- **Proteção contra duplo clique**: toques repetidos no mesmo botão em menos de 600 ms são ignorados.
+- **Bloqueio de toque simultâneo**: se dois botões forem tocados ao mesmo tempo, nenhum é acionado e um Toast pede para tocar em um botão de cada vez.
 - **Idiomas**: português (padrão), inglês e espanhol.
 
 ## Requisitos
@@ -55,7 +56,7 @@ Pela linha de comando:
 ./gradlew connectedDebugAndroidTest
 ```
 
-São 20 testes de unidade (regras do jogo e anti duplo clique) e 23 testes de interface cobrindo as três telas.
+São 20 testes de unidade (regras do jogo e anti duplo clique) e 27 testes de interface cobrindo as três telas e o toque simultâneo em dois botões.
 
 ## Estrutura
 
@@ -64,6 +65,7 @@ app/src/main/java/com/miller/oliveira/marcatruco/
 ├── MainActivity.kt          # Tela principal: placar e navegação
 ├── PlayHistoryActivity.kt   # Tela de histórico de vitórias
 ├── ProvideNamesActivity.kt  # Tela para informar os nomes
+├── SingleTouchActivity.kt   # Base das telas: bloqueia toque em dois botões ao mesmo tempo
 ├── TrucoGame.kt             # Regras do jogo (Kotlin puro, sem Android)
 ├── ClickThrottle.kt         # Lógica do anti duplo clique
 ├── IntentKeys.kt            # Chaves dos dados trocados entre telas

@@ -15,7 +15,7 @@
 4. [Arquitetura](#4-arquitetura)
 5. [Comunicação entre as telas](#5-comunicação-entre-as-telas)
 6. [Preservação do estado na rotação](#6-preservação-do-estado-na-rotação)
-7. [Proteção contra duplo clique](#7-proteção-contra-duplo-clique)
+7. [Proteção contra duplo clique e toque simultâneo](#7-proteção-contra-duplo-clique-e-toque-simultâneo)
 8. [Interface visual](#8-interface-visual)
 9. [Internacionalização](#9-internacionalização)
 10. [Testes automatizados](#10-testes-automatizados)
@@ -152,6 +152,7 @@ app/src/main/
 │   ├── MainActivity.kt           # Tela principal
 │   ├── PlayHistoryActivity.kt    # Tela de histórico
 │   ├── ProvideNamesActivity.kt   # Tela de nomes
+│   ├── SingleTouchActivity.kt    # Base das telas: bloqueia toque simultâneo
 │   ├── TrucoGame.kt              # Player + regras do jogo
 │   ├── ClickThrottle.kt          # Intervalo mínimo entre cliques
 │   ├── IntentKeys.kt             # Chaves dos extras das Intents
@@ -168,6 +169,7 @@ app/src/main/
 ### Responsabilidades
 
 - **Activities**: cuidam apenas da interface. Ligam os botões, chamam `TrucoGame` e atualizam a tela.
+- **`SingleTouchActivity`**: classe base das três telas (estende `AppCompatActivity`). Impede que dois botões sejam acionados ao mesmo tempo.
 - **`TrucoGame`**: concentra todas as regras do jogo.
 - **`IntentKeys`**: centraliza as chaves usadas para trocar dados entre as telas. Assim nenhuma Activity depende de constantes de outra.
 - **`ViewExtensions`**: funções reaproveitadas pelas três telas:
@@ -258,7 +260,9 @@ Esse comportamento é coberto por testes de interface que recriam cada tela e co
 
 ---
 
-## 7. Proteção contra duplo clique
+## 7. Proteção contra duplo clique e toque simultâneo
+
+### 7.1 Duplo clique no mesmo botão
 
 Para evitar, por exemplo, somar pontos em dobro com um toque acidental ou abrir a mesma tela duas vezes, todos os botões usam `setOnSingleClickListener`. Depois de um clique aceito, novos cliques **no mesmo botão** são ignorados por 600 ms.
 
@@ -279,6 +283,39 @@ class ClickThrottle(private val intervalMs: Long, private val clock: () -> Long)
 ```
 
 Cada botão tem o seu próprio controle. Tocar em "+3" do Jogador 1 e logo em seguida em "+3" do Jogador 2 funciona normalmente.
+
+### 7.2 Dois botões ao mesmo tempo
+
+O Android permite tocar em dois botões diferentes ao mesmo tempo, com dedos diferentes. Sem tratamento, tocar juntos em "+12" dos dois jogadores daria uma vitória para cada um, e tocar juntos em "Hist. de Jogadas" e "Inf. Nomes" abriria as duas telas.
+
+Para impedir isso, as três telas estendem `SingleTouchActivity`, que observa os toques em `dispatchTouchEvent` antes de eles chegarem aos botões:
+
+1. Quando um **segundo dedo** encosta na tela (`ACTION_POINTER_DOWN`), a classe procura o componente clicável sob cada dedo.
+2. Se os dedos estão sobre **dois botões diferentes**, o gesto é cancelado com um `ACTION_CANCEL`, então **nenhum dos botões é acionado**.
+3. Os demais eventos daquele gesto são ignorados até todos os dedos saírem da tela.
+4. Um Toast exibe **"Toque em um botão de cada vez"**.
+
+```kotlin
+override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+    when (event.actionMasked) {
+        MotionEvent.ACTION_DOWN -> gestureBlocked = false
+        MotionEvent.ACTION_POINTER_DOWN ->
+            if (!gestureBlocked && touchesMoreThanOneButton(event)) blockGesture(event)
+    }
+
+    if (gestureBlocked) return true
+    return super.dispatchTouchEvent(event)
+}
+```
+
+Se o segundo dedo estiver fora dos botões, o gesto segue normalmente, sem aviso. Depois de um gesto bloqueado, o próximo toque com um dedo funciona normalmente.
+
+| Situação | Resultado |
+|---|---|
+| Toque duplo rápido no mesmo botão | Conta uma vez (seção 7.1) |
+| Um botão e logo depois outro, com um dedo | Os dois funcionam (são jogadas válidas) |
+| Dois botões ao mesmo tempo, com dois dedos | Nenhum é acionado; Toast de aviso |
+| Um dedo num botão e outro fora dos botões | O botão funciona normalmente |
 
 ---
 
@@ -332,6 +369,9 @@ Usam Espresso e rodam num aparelho ou emulador.
 | `MainActivityTest` | 12 | Placar inicial, botões de cada jogador, acúmulo, duplo clique contando uma vez, vitória, rotação, troca de nomes, nome em branco, voltar sem confirmar, histórico, zerar histórico (incluindo os nomes) |
 | `PlayHistoryActivityTest` | 5 | Exibição dos dados recebidos, valores padrão, título, botão voltar, rotação |
 | `ProvideNamesActivityTest` | 6 | Título, rótulos e botão Confirmar, nomes devolvidos sem espaços, campos vazios, botão voltar cancela, rotação |
+| `MultiTouchTest` | 4 | Dois botões de pontos ao mesmo tempo não somam nada, dois botões de navegação ao mesmo tempo não abrem telas, toque normal funciona depois de um bloqueio, segundo dedo fora dos botões não bloqueia |
+
+Como o Espresso não simula toques com dois dedos, o `MultiTouchTest` monta os eventos de multitoque (`MotionEvent`) e os envia diretamente para a tela.
 
 As animações do sistema são desativadas durante os testes de interface (`testOptions.animationsDisabled = true`) para garantir resultados estáveis.
 
