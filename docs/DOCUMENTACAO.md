@@ -1,6 +1,6 @@
 # Documentação do Projeto — Marca Truco
 
-**Autor:** Miller César de Olivera
+**Autor:** Miller César de Oliveira
 **Instituição:** Universidade Tecnológica Federal do Paraná (UTFPR), Campus Pato Branco
 **Curso:** Especialização em Programação para Dispositivos Móveis
 **Disciplina:** Android: Componentes Visuais Básicos, Tratamento de Eventos e Troca de Telas
@@ -388,4 +388,4 @@ As animações do sistema são desativadas durante os testes de interface (`test
 
 ---
 
-*Miller César de Olivera*
+*Miller César de Oliveira*

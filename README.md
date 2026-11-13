@@ -76,4 +76,4 @@ A documentação completa, com o funcionamento de cada tela, a arquitetura, o fl
 
 ## Autor
 
-**Miller César de Olivera**
+**Miller César de Oliveira**
